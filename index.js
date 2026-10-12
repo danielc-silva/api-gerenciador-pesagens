@@ -13,5 +13,5 @@ app.use('/piquetes', rotasPiquetes);
 app.use('/bovinos', rotasBovinos);
 app.use('/pesagens', rotasPesagens);
 
-const PORT = 3001;
-app.listen(PORT, () => console.log(`API rodando em http://localhost:${PORT}`));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`API rodando na porta ${PORT}`));
