@@ -1,3 +1,20 @@
+# Trabalho Prático 1 — Programação para a Web
+
+- **Instituição:** Instituto Federal Sul-rio-grandense (IFSUL) - Campus Passo Fundo
+- **Curso:** Bacharelado em Ciência da Computação
+- **Disciplina:** Programação para a Web
+- **Professora:** Jéssica Di Domênico
+- **Aluno:** Daniel Cipriano da Silva
+
+---
+
+### Repositórios do Projeto
+
+- **Aplicação Frontend (React / PWA):** [gerenciador-pesagens](https://github.com/danielc-silva/gerenciador-pesagens.git)
+- **Backend / API (Node.js / Express / Drizzle ORM):** [api-gerenciador-pesagens](https://github.com/danielc-silva/api-gerenciador-pesagens.git)
+
+---
+
 # API - Gerenciador de Pesagens
 
 API desenvolvida em **Node.js** com **Express**, **PostgreSQL** e **Drizzle ORM** para gerenciamento de piquetes, rebanho bovino e histórico de pesagens.
@@ -7,7 +24,7 @@ API desenvolvida em **Node.js** com **Express**, **PostgreSQL** e **Drizzle ORM*
 ## Tecnologias Utilizadas
 
 - **Node.js**
-- **Express 5**
+- **Express**
 - **PostgreSQL**
 - **Drizzle ORM** & **Drizzle Kit**
 - **CORS**
