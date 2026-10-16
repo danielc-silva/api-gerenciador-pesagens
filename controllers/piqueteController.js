@@ -16,6 +16,11 @@ export const piqueteController = {
       if (!rotulo || !lotacao_maxima) {
         return res.status(400).json({ mensagem: "Rótulo e lotação máxima são obrigatórios." });
       }
+
+      if (Number(lotacao_maxima) < 1) {
+        return res.status(400).json({ mensagem: "A lotação máxima do piquete deve ser de no mínimo 1 animal." });
+      }
+
       const piquete = await piqueteUseCases.cadastrar(req.body);
       return res.status(201).json({ mensagem: "Piquete cadastrado com sucesso!", piquete });
     } catch (err) {
@@ -30,6 +35,11 @@ export const piqueteController = {
       if (!rotulo || !lotacao_maxima) {
         return res.status(400).json({ mensagem: "Campos obrigatórios faltando." });
       }
+
+      if (Number(lotacao_maxima) < 1) {
+        return res.status(400).json({ mensagem: "A lotação máxima do piquete deve ser de no mínimo 1 animal." });
+      }
+      
       const atualizado = await piqueteUseCases.atualizar(id, req.body);
       return res.status(200).json({ mensagem: "Piquete atualizado com sucesso!", piquete: atualizado });
     } catch (err) {

@@ -16,6 +16,16 @@ export const pesagemController = {
       if (!peso_kg || !data_pesagem || !brinco_aferido) {
         return res.status(400).json({ mensagem: "Todos os campos são obrigatórios." });
       }
+
+      if (Number(peso_kg) < 1) {
+        return res.status(400).json({ mensagem: "O peso do animal deve ser de no mínimo 1 kg." });
+      }
+
+      const hoje = new Date().toISOString().split("T")[0];
+      if (data_pesagem > hoje) {
+        return res.status(400).json({ mensagem: "A data da pesagem não pode ser no futuro." });
+      }
+
       const pesagem = await pesagemUseCases.cadastrar(req.body);
       return res.status(201).json({ mensagem: "Pesagem cadastrada com sucesso!", pesagem });
     } catch (err) {
@@ -26,6 +36,16 @@ export const pesagemController = {
   async atualizar(req, res) {
     try {
       const id = parseInt(req.params.id);
+
+      if (peso_kg !== undefined && Number(peso_kg) < 1) {
+        return res.status(400).json({ mensagem: "O peso do animal deve ser de no mínimo 1 kg." });
+      }
+
+      const hoje = new Date().toISOString().split("T")[0];
+      if (data_pesagem > hoje) {
+        return res.status(400).json({ mensagem: "A data da pesagem não pode ser no futuro." });
+      }
+
       const atualizado = await pesagemUseCases.atualizar(id, req.body);
       return res.status(200).json({ mensagem: "Pesagem atualizada com sucesso!", pesagem: atualizado });
     } catch (err) {
