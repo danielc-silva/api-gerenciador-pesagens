@@ -17,8 +17,10 @@ export const pesagemController = {
         return res.status(400).json({ mensagem: "Todos os campos são obrigatórios." });
       }
 
-      if (Number(peso_kg) < 1) {
-        return res.status(400).json({ mensagem: "O peso do animal deve ser de no mínimo 1 kg." });
+      const peso = Number(peso_kg);
+
+      if (peso < 1 || peso > 9999.99) {
+        return res.status(400).json({ mensagem: "O peso do animal deve estar entre 1 kg e 9999.99 kg." });
       }
 
       const hoje = new Date().toISOString().split("T")[0];
@@ -37,8 +39,11 @@ export const pesagemController = {
     try {
       const id = parseInt(req.params.id);
 
-      if (peso_kg !== undefined && Number(peso_kg) < 1) {
-        return res.status(400).json({ mensagem: "O peso do animal deve ser de no mínimo 1 kg." });
+      if (peso_kg !== undefined) {
+        const peso = Number(peso_kg);
+        if (peso < 1 || peso > 9999.99) {
+          return res.status(400).json({ mensagem: "O peso do animal deve estar entre 1 kg e 9999.99 kg." });
+        }
       }
 
       const hoje = new Date().toISOString().split("T")[0];
