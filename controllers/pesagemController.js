@@ -39,6 +39,8 @@ export const pesagemController = {
     try {
       const id = parseInt(req.params.id);
 
+      const { peso_kg, data_pesagem } = req.body;
+
       if (peso_kg !== undefined) {
         const peso = Number(peso_kg);
         if (peso < 1 || peso > 9999.99) {
