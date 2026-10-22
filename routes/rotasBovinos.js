@@ -6,6 +6,7 @@ export const rotasBovinos = Router();
 // ele vai grardar o caminho relativo get post put /:brinc
 
 rotasBovinos.get('/', bovinoController.listar);
+rotasBovinos.get('/:brinco', bovinoController.buscarPorBrinco);
 rotasBovinos.post('/', bovinoController.cadastrar);
 rotasBovinos.put('/:brinco', bovinoController.atualizar);
 rotasBovinos.delete('/:brinco', bovinoController.remover);

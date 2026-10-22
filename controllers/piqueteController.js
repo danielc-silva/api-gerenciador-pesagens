@@ -10,6 +10,21 @@ export const piqueteController = {
     }
   },
 
+  async buscarPorId(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const piquete = await piqueteUseCases.buscarPorId(id);
+
+      if (!piquete) {
+        return res.status(404).json({ mensagem: "Piquete não encontrado." });
+      }
+
+      return res.status(200).json(piquete);
+    } catch (err) {
+      return res.status(500).json({ erro: err.message });
+    }
+  },
+
   async cadastrar(req, res) {
     try {
       const { rotulo, lotacao_maxima } = req.body;

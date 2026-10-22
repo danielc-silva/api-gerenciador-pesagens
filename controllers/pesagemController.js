@@ -10,6 +10,21 @@ export const pesagemController = {
     }
   },
 
+  async buscarPorId(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const pesagem = await pesagemUseCases.buscarPorId(id);
+
+      if (!pesagem) {
+        return res.status(404).json({ mensagem: "Pesagem não encontrada." });
+      }
+
+      return res.status(200).json(pesagem);
+    } catch (err) {
+      return res.status(500).json({ erro: err.message });
+    }
+  },
+
   async cadastrar(req, res) {
     try {
       const { peso_kg, data_pesagem, brinco_aferido } = req.body;

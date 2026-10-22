@@ -6,6 +6,7 @@ export const rotasPesagens = Router();
 // ele vai grardar o caminho relativo get post put /:brinc
 
 rotasPesagens.get('/', pesagemController.listar);
+rotasPesagens.get('/:id', pesagemController.buscarPorId);
 rotasPesagens.post('/', pesagemController.cadastrar);
 rotasPesagens.put('/:id', pesagemController.atualizar);
 rotasPesagens.delete('/:id', pesagemController.remover);

@@ -8,6 +8,15 @@ export const bovinoUseCases = {
     return await db.select().from(bovinos);
   },
 
+  async buscarPorBrinco(brinco) {
+    const resultado = await db
+      .select()
+      .from(bovinos)
+      .where(eq(bovinos.numeroBrinco, brinco));
+
+    return resultado[0] || null;
+  },
+
   async cadastrar({ nascimento, piquete_alocado }) {
     const idPiquete = Number(piquete_alocado);
 

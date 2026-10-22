@@ -8,6 +8,16 @@ export const pesagemUseCases = {
     return await db.select().from(pesagens);
   },
 
+  async buscarPorId(id) {
+    const resultado = await db
+      .select()
+      .from(pesagens)
+      .where(eq(pesagens.idPesagem, id));
+
+    return resultado[0] || null;
+  },
+
+
   async cadastrar({ peso_kg, data_pesagem, brinco_aferido }) {
     const animal = await db.select().from(bovinos).where(eq(bovinos.numeroBrinco, Number(brinco_aferido)));
     if (animal.length === 0) {

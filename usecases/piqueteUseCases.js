@@ -8,6 +8,15 @@ export const piqueteUseCases = {
     return await db.select().from(piquetes);
   },
 
+  async buscarPorId(id) {
+    const resultado = await db
+      .select()
+      .from(piquetes)
+      .where(eq(piquetes.idPiquete, id));
+
+    return resultado[0] || null;
+  },
+
   async cadastrar({ rotulo, lotacao_maxima }) {
     const entidade = new Piquete({ rotulo, lotacaoMaxima: lotacao_maxima });
     const res = await db.insert(piquetes).values({

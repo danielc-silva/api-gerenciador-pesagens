@@ -10,6 +10,21 @@ export const bovinoController = {
     }
   },
 
+  async buscarPorBrinco(req, res) {
+    try {
+      const brinco = parseInt(req.params.brinco);
+      const animal = await bovinoUseCases.buscarPorBrinco(brinco);
+
+      if (!animal) {
+        return res.status(404).json({ mensagem: "Bovino não encontrado." });
+      }
+
+      return res.status(200).json(animal);
+    } catch (err) {
+      return res.status(500).json({ erro: err.message });
+    }
+  },
+
   async cadastrar(req, res) {
     try {
       // ele le o que veio do envelope http, pegando o body emm json da req
@@ -18,7 +33,7 @@ export const bovinoController = {
       if (!nascimento || !piquete_alocado) {
         return res.status(400).json({ mensagem: "Nascimento e piquete_alocado são obrigatórios." });
       }
-      
+
       const hoje = new Date().toISOString().split("T")[0];
       if (nascimento > hoje) {
         return res.status(400).json({ mensagem: "A data de nascimento não pode ser no futuro." });
@@ -43,7 +58,7 @@ export const bovinoController = {
       if (nascimento > hoje) {
         return res.status(400).json({ mensagem: "A data de nascimento não pode ser no futuro." });
       }
-      
+
       const atualizado = await bovinoUseCases.atualizar(brinco, req.body);
       return res.status(200).json({ mensagem: "Bovino atualizado com sucesso!", bovino: atualizado });
     } catch (err) {
