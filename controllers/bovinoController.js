@@ -12,7 +12,9 @@ export const bovinoController = {
 
   async cadastrar(req, res) {
     try {
+      // ele le o que veio do envelope http, pegando o body emm json da req
       const { nascimento, piquete_alocado } = req.body;
+      // verifica se os campos não vieram vazios
       if (!nascimento || !piquete_alocado) {
         return res.status(400).json({ mensagem: "Nascimento e piquete_alocado são obrigatórios." });
       }
