@@ -3,11 +3,18 @@ import cors from 'cors';
 import { rotasPiquetes } from './routes/rotasPiquetes.js';
 import { rotasBovinos } from './routes/rotasBovinos.js';
 import { rotasPesagens } from './routes/rotasPesagens.js';
+import { segurancaController, verificaJWT } from './controllers/segurancaController.js';
 
 const app = express();
 app.use(cors()); // autorizar que o navegador permita que o seu front-end faça requisições e receba dados da API quando eles estiverem rodando em portas ou domínios diferentes.
 app.use(express.json()); // recebe o envelope com texto json bruto do front e tranforma ele em obj req.body
 // o controller vai ler o conteudo desse req.body q ele cria
+
+// Rotas de Autenticação e Perfil de Usuário (Requisitos 1, 3 e 4)
+app.post('/login', segurancaController.login);
+app.post('/usuarios', segurancaController.cadastrar);
+app.get('/usuarios/me', verificaJWT, segurancaController.obterPerfil);
+app.put('/usuarios/me', verificaJWT, segurancaController.atualizarPerfil);
 
 // montagem das rotas modulares, verifica se o que tem na rota se é /bovinos ex e encaminha para rotasBovinos
 app.use('/piquetes', rotasPiquetes);

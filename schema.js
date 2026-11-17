@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, integer, numeric, date } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, integer, numeric, date, char } from 'drizzle-orm/pg-core';
 
 export const piquetes = pgTable('piquetes', {
   idPiquete: serial('id_piquete').primaryKey(),
@@ -21,4 +21,13 @@ export const pesagens = pgTable('pesagens', {
   brincoAferido: integer('brinco_aferido')
     .notNull()
     .references(() => bovinos.numeroBrinco, { onDelete: 'cascade' }),
+});
+
+// Nova tabela de usuários para autenticação JWT e controle de acesso
+export const usuarios = pgTable('usuarios', {
+  email: varchar('email', { length: 50 }).primaryKey(),
+  senha: varchar('senha', { length: 20 }).notNull(),
+  tipo: char('tipo', { length: 1 }).notNull(), // 'A' = Admin, 'U' = Usuário comum
+  telefone: varchar('telefone', { length: 14 }).notNull(),
+  nome: varchar('nome', { length: 50 }).notNull(),
 });

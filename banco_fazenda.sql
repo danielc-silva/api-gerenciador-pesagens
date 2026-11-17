@@ -25,6 +25,15 @@ CREATE TABLE IF NOT EXISTS pesagens (
     FOREIGN KEY (brinco_aferido) REFERENCES bovinos (numero_brinco) ON DELETE CASCADE
 );
 
+-- users
+CREATE TABLE usuarios (
+    email VARCHAR(50) NOT NULL PRIMARY KEY,
+    senha VARCHAR(20) NOT NULL,
+    tipo CHAR(1) NOT NULL CHECK (tipo = 'A' OR tipo = 'U'),
+    telefone VARCHAR(14) NOT NULL,
+    nome VARCHAR(50) NOT NULL
+);
+
 -- popular tabelas para testes
 
 -- popular piquetes
